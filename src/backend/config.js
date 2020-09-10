@@ -42,7 +42,11 @@ function populateS3Options(env): Object {
     .replace(/\/+$/, "");
 
   const s3Endpoint =
-    env.COMMUTER_S3_ENDPOINT || "";
+    env.COMMUTER_S3_ENDPOINT || null;
+  
+  // only interpret "true" as true otherwise false
+  const s3ForcePathStyle = /^true$/i.test(
+    env.COMMUTER_S3_FORCE_PATH_STYLE || "");
 
   const config = {
     s3: {
@@ -54,7 +58,8 @@ function populateS3Options(env): Object {
       accessKeyId: env.COMMUTER_S3_KEY,
       // required secret
       secretAccessKey: env.COMMUTER_S3_SECRET,
-      endpoint: s3Endpoint
+      endpoint: s3Endpoint,
+      s3ForcePathStyle: s3ForcePathStyle
     },
     s3PathDelimiter,
     s3BasePrefix
@@ -131,7 +136,7 @@ function instantiate() {
   }
 
   config.nodeEnv = process.env.NODE_ENV || "test";
-  config.port = process.env.PORT || process.env.COMMUTER_PORT || 4000;
+  config.port = process.env.COMMUTER_PORT || 4000;
 
   return config;
 }

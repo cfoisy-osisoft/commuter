@@ -1,6 +1,6 @@
 {
   "name": "@nteract/commuter",
-  "version": "5.8.0",
+  "version": "5.10.0",
   "description": "share, publish, and discover notebooks",
   "main": "lib/index.js",
   "scripts": {
@@ -10,13 +10,16 @@
     "start": "NODE_ENV=production node lib/index.js",
     "build": "npm run build:all",
     "build:frontend-for-production": "next build",
-    "build:server": "babel backend -d lib",
+    "build:server": "babel src -d lib",
     "build:all": "npm run build:server && npm run build:frontend-for-production",
     "prepublishOnly": "npm run build:all",
     "test": "jest"
   },
   "bin": {
-    "commuter": "bin.js"
+    "commuter": "lib/bin.js"
+  },
+  "jest": {
+    "testRegex": "tests"
   },
   "repository": "nteract/nteract",
   "keywords": [
@@ -55,7 +58,7 @@
     "@nteract/notebook-preview": "^11.0.4-alpha.0",
     "@nteract/octicons": "^2.0.0",
     "@nteract/presentational-components": "^3.0.5",
-    "@nteract/transform-vega": "^6.0.1",
+    "@nteract/transform-vega": "^7.0.0",
     "@nteract/transforms": "^5.0.4-alpha.0",
     "@nteract/webpack-configurator": "^3.0.0",
     "aws-sdk": "^2.491.0",
@@ -69,12 +72,12 @@
     "fs-extra": "^8.1.0",
     "jquery": "^3.4.1",
     "jsonfile": "^5.0.0",
-    "lodash": "4.17.14",
+    "lodash": "4.17.19",
     "lodash.merge": "4.6.2",
     "log": "^6.0.0",
     "morgan": "^1.7.0",
     "nbschema": "^0.1.0",
-    "next": "9.0.0",
+    "next": "9.4.1",
     "node-fetch": "^2.6.0",
     "nprogress": "^0.2.0",
     "prop-types": "^15.7.2",
